@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "71e924e1-2538-4c11-9b22-b3bfd7154504",
+		"name": "BuscaMedicamentos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32814677"
+	},
+	"item": [
+		{
+			"name": "Salvar Unidade",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Unidade Central de Poá\",\r\n  \"email\": \"unidade.poa@sus.gov.br\",\r\n  \"senha\": \"senhaSegura123\",\r\n  \"telefone\": \"1146360000\",\r\n  \"endereco\": {\r\n    \"cep\": \"08550-000\",\r\n    \"rua\": \"Avenida Brasil\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Próximo à estação\",\r\n    \"bairro\": \"Centro\",\r\n    \"localidade\": \"Poá\",\r\n    \"uf\": \"SP\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/unidades"
+			},
+			"response": []
+		},
+		{
+			"name": "Salvar Medicamento",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
