@@ -1,0 +1,45 @@
+services:
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: unidade
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    networks:
+      - hackaton-net
+
+  ms-unidade:
+    build: ./ms-unidade
+    container_name: ms-unidade
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/unidade
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      GRPC_SERVER_PORT: 9090
+    depends_on:
+      - postgres-db
+    networks:
+      - hackaton-net
+
+  # Microserviço de Usuário (Cliente gRPC)
+  ms-usuario:
+    build: ./ms-usuario
+    container_name: ms-usuario
+    ports:
+      - "8081:8081"
+    environment:
+      GRPC_CLIENT_INVENTORY_SERVICE_ADDRESS: static://ms-unidade:9090
+    depends_on:
+      - ms-unidade
+    networks:
+      - hackaton-net
+
+networks:
+  hackaton-net:
+    driver: bridge

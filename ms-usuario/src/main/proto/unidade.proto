@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hackaton.fiap.grpc";
+option java_outer_classname = "EstoqueProto";
+
+service EstoqueService {
+  rpc ConsultarDisponibilidade (ConsultaRequest) returns (ConsultaResponse);
+}
+
+message ConsultaRequest {
+  string nome_medicamento = 1;
+}
+
+message ConsultaResponse {
+  bool disponivel = 1;
+  string nome_medicamento = 2;
+  string nome_unidade = 3;
+  string endereco_unidade = 4;
+}
